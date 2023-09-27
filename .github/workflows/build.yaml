@@ -39,7 +39,7 @@ jobs:
 
   build-module-1:
     name: Module 1
-    uses: ./modules/module1/ci-build.yaml
+    uses: ./.github/workflows/ci-build.yaml
     needs: paths-filter
     if: needs.paths-filter.outputs.module1 == 'true'
   
