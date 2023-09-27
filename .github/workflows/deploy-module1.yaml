@@ -1,4 +1,4 @@
-name: Build module 1
+name: Terraform
 
 on:
   workflow_call:
@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-20.04
     defaults:
       run:
-        working-directory: terraform
+        working-directory: modules/module1/terraform
     permissions:
       contents: read
       pull-requests: write
