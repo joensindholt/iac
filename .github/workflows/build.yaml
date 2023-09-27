@@ -39,12 +39,12 @@ jobs:
 
   build-module-1:
     name: Module 1
-    uses: ./.github/workflows/ci-build.yaml
-    needs: paths-filter
-    if: needs.paths-filter.outputs.module1 == 'true'
+    uses: ./.github/workflows/build-module1.yaml
+    needs: find-modules-to-build
+    if: needs.find-modules-to-build.outputs.module1 == 'true'
   
   build-module-2:
     name: Module 2
-    uses: ./modules/module2/ci-build.yaml
-    needs: paths-filter
-    if: needs.paths-filter.outputs.module2 == 'true'
+    uses: ./.github/workflows/build-module2.yaml
+    needs: find-modules-to-build
+    if: needs.find-modules-to-build.outputs.module2 == 'true'
