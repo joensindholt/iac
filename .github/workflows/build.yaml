@@ -18,17 +18,17 @@ jobs:
         env:
           GITHUB_CONTEXT: ${{ toJson(github) }}
         run: echo "$GITHUB_CONTEXT"
-  build-module-1:
-    uses: ./.github/workflows/build-module1.yaml
-    with:
-      filters: |
-        paths:
-          - 'src/module1/**'
-    if: outputs.paths == 'true'
-  build-module-2:
-    uses: ./.github/workflows/build-module2.yaml
-    with:
-      filters: |
-        paths:
-          - 'src/module2/**'
-    if: outputs.paths == 'true'
+  # build-module-1:
+  #   uses: ./.github/workflows/build-module1.yaml
+  #   with:
+  #     filters: |
+  #       paths:
+  #         - 'src/module1/**'
+  #   if: outputs.paths == 'true'
+  # build-module-2:
+  #   uses: ./.github/workflows/build-module2.yaml
+  #   with:
+  #     filters: |
+  #       paths:
+  #         - 'src/module2/**'
+  #   if: outputs.paths == 'true'
