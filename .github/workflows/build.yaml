@@ -11,24 +11,28 @@ on:
       - main
 
 jobs:
-  dump-github-context:
-    runs-on: ubuntu-20.04
+  paths-filter:
+    runs-on: ubuntu-latest
+    outputs:
+      module1: ${{ steps.filter.outputs.module1 }}
+      module2: ${{ steps.filter.outputs.module2 }}
     steps:
-      - name: Dump GitHub context
-        env:
-          GITHUB_CONTEXT: ${{ toJson(github) }}
-        run: echo "$GITHUB_CONTEXT"
-  # build-module-1:
-  #   uses: ./.github/workflows/build-module1.yaml
-  #   with:
-  #     filters: |
-  #       paths:
-  #         - 'src/module1/**'
-  #   if: outputs.paths == 'true'
-  # build-module-2:
-  #   uses: ./.github/workflows/build-module2.yaml
-  #   with:
-  #     filters: |
-  #       paths:
-  #         - 'src/module2/**'
-  #   if: outputs.paths == 'true'
+    - uses: actions/checkout@v2
+    - uses: dorny/paths-filter@v2
+      id: filter
+      with:
+        filters: |
+          module1:
+            - 'src/module1/**'
+          module2:
+            - 'src/module2/**'
+
+  build-module-1:
+    uses: ./.github/workflows/build-module1.yaml
+    needs: paths-filter
+    if: needs.paths-filter.outputs.output1 == 'true'
+  
+  build-module-2:
+    uses: ./.github/workflows/build-module2.yaml
+    needs: paths-filter
+    if: needs.paths-filter.outputs.output1 == 'true'
