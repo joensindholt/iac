@@ -39,7 +39,7 @@ jobs:
 
   build-module-1:
     name: Module 1
-    uses: ./modules/module1/build-module1.yaml
+    uses: ./.github/workflows/build-module1.yaml
     needs: find-modules-to-build
     if: needs.find-modules-to-build.outputs.module1 == 'true'
   
