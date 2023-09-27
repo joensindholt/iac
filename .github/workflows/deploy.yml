@@ -34,7 +34,7 @@ jobs:
       id: extract_branch
 
     - name: Terraform Workspace
-      id: fmt
+      id: wrkspc
       run: terraform workspace select -or-create ${{ steps.extract_branch.outputs.branch }}
       continue-on-error: true
 
