@@ -33,4 +33,6 @@ override.tf.json
 .terraformrc
 terraform.rc
 
-!/.git/hooks/post-checkout
+!.git/hooks/post-checkout
+
+.vscode
