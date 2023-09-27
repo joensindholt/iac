@@ -42,9 +42,16 @@ jobs:
     uses: ./.github/workflows/build-module1.yaml
     needs: find-modules-to-build
     if: needs.find-modules-to-build.outputs.module1 == 'true'
-  
+    permissions:
+      contents: read
+      pull-requests: write
+
   build-module-2:
     name: Module 2
     uses: ./.github/workflows/build-module2.yaml
     needs: find-modules-to-build
     if: needs.find-modules-to-build.outputs.module2 == 'true'
+    permissions:
+      contents: read
+      pull-requests: write
+
