@@ -43,13 +43,13 @@ jobs:
 
     - name: Terraform Workspace Main
       id: wrkspc-main
-      if: github.ref == 'refs/heads/main'
+      if: (github.event_name == 'push' && github.ref == 'refs/heads/main') || (github.event_name == 'pull_request' && github.ref == 'refs/heads/dev')
       run: terraform workspace select -or-create main
       continue-on-error: true
 
     - name: Terraform Workspace Dev
       id: wrkspc-dev
-      if: github.ref != 'refs/heads/main'
+      if: (github.event_name != 'push' || github.ref != 'refs/heads/main')
       run: terraform workspace select -or-create dev
       continue-on-error: true
 
