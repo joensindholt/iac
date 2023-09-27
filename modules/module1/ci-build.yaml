@@ -1,15 +1,15 @@
-name: Build module 2
+name: Build
 
 on:
   workflow_call:
 
 jobs:
   build:
-    name: Build module 2
+    name: Build
     runs-on: ubuntu-20.04
     defaults:
       run:
-        working-directory: src/module2
+        working-directory: modules/module1
     steps:
     - uses: actions/checkout@v4
 

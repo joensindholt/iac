@@ -11,7 +11,8 @@ on:
       - main
 
 jobs:
-  paths-filter:
+  find-modules-to-build:
+    name: Find Changed Modules
     runs-on: ubuntu-latest
     outputs:
       module1: ${{ steps.filter.outputs.module1 }}
@@ -37,11 +38,13 @@ jobs:
 
 
   build-module-1:
-    uses: ./.github/workflows/build-module1.yaml
+    name: Module 1
+    uses: ./modules/module1/ci-build.yaml
     needs: paths-filter
     if: needs.paths-filter.outputs.module1 == 'true'
   
   build-module-2:
-    uses: ./.github/workflows/build-module2.yaml
+    name: Module 2
+    uses: ./modules/module2/ci-build.yaml
     needs: paths-filter
     if: needs.paths-filter.outputs.module2 == 'true'
