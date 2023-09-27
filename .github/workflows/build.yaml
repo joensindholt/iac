@@ -24,9 +24,9 @@ jobs:
       with:
         filters: |
           module1:
-            - 'src/module1/**'
+            - 'modules/module1/**'
           module2:
-            - 'src/module2/**'
+            - 'modules/module2/**'
 
     - name: module 1 test
       if: steps.filter.outputs.module1 == 'true'
