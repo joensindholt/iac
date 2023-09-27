@@ -1,9 +1,13 @@
-name: Terraform Plan X
+name: Terraform
 
 on:
   pull_request:
     branches:
       - dev
+  push:
+    branches:
+      - dev
+      - main
 env:
   AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
   AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
@@ -37,14 +41,16 @@ jobs:
       run: terraform init
       continue-on-error: true
 
-    - name: Extract branch name
-      shell: bash
-      run: echo "branch=${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}" >> $GITHUB_OUTPUT
-      id: extract_branch
+    - name: Terraform Workspace Main
+      id: wrkspc-main
+      if: github.ref == 'refs/heads/main')
+      run: terraform workspace select -or-create main
+      continue-on-error: true
 
-    - name: Terraform Workspace
-      id: wrkspc
-      run: terraform workspace select -or-create ${{ steps.extract_branch.outputs.branch }}
+    - name: Terraform Workspace Dev
+      id: wrkspc-main
+      if: github.ref != 'refs/heads/main')
+      run: terraform workspace select -or-create dev
       continue-on-error: true
 
     - name: Terraform Validate
@@ -54,7 +60,6 @@ jobs:
 
     - name: Terraform Plan
       id: plan
-      if: github.event_name == 'pull_request'
       run: terraform plan -no-color -input=false
       continue-on-error: true
 
@@ -111,7 +116,11 @@ jobs:
               body: output
             })
           }
-
+          
     - name: Terraform Status
       if: steps.plan.outcome == 'failure' || steps.validate.outcome == 'failure' || steps.init.outcome == 'failure' || steps.fmt.outcome == 'failure'
       run: exit 1
+
+    - name: Terraform Apply
+      if: (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/dev') && github.event_name == 'push'
+      run: terraform apply -auto-approve -input=false
