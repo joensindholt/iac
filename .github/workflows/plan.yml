@@ -22,10 +22,20 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
 
-    - name: Use Terraform 1.3.7
+    - name: Use Terraform 1.5.7
       uses: hashicorp/setup-terraform@v2
       with:
-        terraform_version: 1.3.7
+        terraform_version: 1.5.7
+
+    - name: Extract branch name
+      shell: bash
+      run: echo "branch=${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}" >> $GITHUB_OUTPUT
+      id: extract_branch
+
+    - name: Terraform Workspace
+      id: fmt
+      run: terraform workspace select -or-create ${{ steps.extract_branch.outputs.branch }}
+      continue-on-error: true
 
     - name: Terraform Format
       id: fmt
