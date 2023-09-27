@@ -20,7 +20,7 @@ jobs:
     - run: npm install
 
   terraform:
-    name: Module 1
+    name: Deploy
     if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/dev'
     uses: ./.github/workflows/deploy-module1.yaml
     needs: build
