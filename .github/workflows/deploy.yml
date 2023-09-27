@@ -28,16 +28,6 @@ jobs:
       with:
         terraform_version: v
 
-    - name: Extract branch name
-      shell: bash
-      run: echo "branch=${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}" >> $GITHUB_OUTPUT
-      id: extract_branch
-
-    - name: Terraform Workspace
-      id: wrkspc
-      run: terraform workspace select -or-create ${{ steps.extract_branch.outputs.branch }}
-      continue-on-error: true
-
     - name: Terraform Format
       id: fmt
       run: terraform fmt -check
@@ -46,6 +36,16 @@ jobs:
     - name: Terraform Init
       id: init
       run: terraform init
+      continue-on-error: true
+
+    - name: Extract branch name
+      shell: bash
+      run: echo "branch=${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}" >> $GITHUB_OUTPUT
+      id: extract_branch
+
+    - name: Terraform Workspace
+      id: wrkspc
+      run: terraform workspace select -or-create ${{ steps.extract_branch.outputs.branch }}
       continue-on-error: true
 
     - name: Terraform Validate
