@@ -4,8 +4,8 @@ on:
   workflow_call:
 
 jobs:
-  build:
-    name: Build module
+  terraform:
+    name: Terraform
     runs-on: ubuntu-20.04
     defaults:
       run:
