@@ -17,7 +17,7 @@ jobs:
       module1: ${{ steps.filter.outputs.module1 }}
       module2: ${{ steps.filter.outputs.module2 }}
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4
     - uses: dorny/paths-filter@v2
       id: filter
       with:
