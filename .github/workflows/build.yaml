@@ -1,0 +1,27 @@
+name: Build
+
+on:
+  push:
+    branches:
+      - dev
+      - main
+  pull_request:
+    branches:
+      - dev
+      - main
+
+jobs:
+  build-module-1:
+    uses: ./.github/workflows/build-module1.yaml
+    with:
+      filters: |
+        paths:
+          - 'src/module1/**'
+    if: filter.outputs.paths == 'true'
+  build-module-2:
+    uses: ./.github/workflows/build-module2.yaml
+    with:
+      filters: |
+        paths:
+          - 'src/module2/**'
+    if: filter.outputs.paths == 'true'
