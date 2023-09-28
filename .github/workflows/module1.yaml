@@ -25,7 +25,7 @@ jobs:
     runs-on: ubuntu-20.04
     defaults:
       run:
-        working-directory: $MODULE_PATH/src
+        working-directory: "$MODULE_PATH/src"
     steps:
       - uses: actions/checkout@v4
 
@@ -41,7 +41,7 @@ jobs:
     runs-on: ubuntu-20.04
     defaults:
       run:
-        working-directory: $MODULE_PATH/terraform
+        working-directory: "$MODULE_PATH/terraform"
     permissions:
       contents: read
       pull-requests: write
