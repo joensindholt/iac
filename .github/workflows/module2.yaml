@@ -1,7 +1,7 @@
-name: Module 1
+name: Module 2
 
 env:
-  MODULE_PATH: modules/module1
+  MODULE_PATH: modules/module2
   AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
   AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
 
@@ -11,13 +11,13 @@ on:
       - dev
       - main
     paths:
-      - 'modules/module1/**/*'
+      - 'modules/module2/**/*'
   pull_request:
     branches:
       - dev
       - main
     paths:
-      - 'modules/module1/**/*'
+      - 'modules/module2/**/*'
 
 jobs:
   build:
