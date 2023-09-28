@@ -17,9 +17,9 @@ provider "aws" {
   region = "eu-north-1"
 }
 
-resource "aws_vpc" "main" {
+resource "aws_vpc" "vpc" {
   cidr_block = "10.0.0.0/16"
   tags = {
-    Name = "joensindholt-iac-vpc-${terraform.workspace}"
+    Name = "joensindholt-iac-vpc-module-1-${terraform.workspace}"
   }
 }
