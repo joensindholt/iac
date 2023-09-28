@@ -11,13 +11,13 @@ on:
       - dev
       - main
     paths:
-      - '${{ env.MODULE_PATH }}/**/*'
+      - 'modules/module1/**/*'
   pull_request:
     branches:
       - dev
       - main
     paths:
-      - '${{ env.MODULE_PATH }}/**/*'
+      - 'modules/module1/**/*'
 
 jobs:
   build:
