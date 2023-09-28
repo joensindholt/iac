@@ -8,7 +8,7 @@ terraform {
 
   backend "s3" {
     bucket = "joensindholt-iac"
-    key    = "module-1.tfstate"
+    key    = "module-2.tfstate"
     region = "eu-north-1"
   }
 }
