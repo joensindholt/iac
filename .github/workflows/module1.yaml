@@ -25,7 +25,7 @@ jobs:
     runs-on: ubuntu-20.04
     defaults:
       run:
-        working-directory: "$MODULE_PATH/src"
+        working-directory: "modules/module1/src"
     steps:
       - uses: actions/checkout@v4
 
