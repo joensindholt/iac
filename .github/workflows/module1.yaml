@@ -10,14 +10,14 @@ on:
     branches:
       - dev
       - main
-    # paths:
-    #   - '${MODULE_PATH}/**'
+    paths:
+      - '${MODULE_PATH}/**/*'
   pull_request:
     branches:
       - dev
       - main
-    # paths:
-    #   - '${MODULE_PATH}/**'
+    paths:
+      - '${MODULE_PATH}/**/*'
 
 jobs:
   build:
@@ -37,6 +37,7 @@ jobs:
 
   terraform:
     name: Terraform
+    needs: build
     runs-on: ubuntu-20.04
     defaults:
       run:
