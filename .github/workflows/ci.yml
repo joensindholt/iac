@@ -9,12 +9,19 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: nrwl/nx-set-shas@v4
 
       - name: List files
         run: ls -al
 
       - name: Install Nx
-        run: npm install --global nx@latest
+        run: ./nx
         
+      - name: List files
+        run: ls -al
+
       - name: Build
         run: npx nx run-many -t build
