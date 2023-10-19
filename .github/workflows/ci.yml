@@ -14,14 +14,11 @@ jobs:
 
       - uses: nrwl/nx-set-shas@v4
 
-      - name: List files
-        run: ls -al
-
       - name: Install Nx
         run: ./nx
         
-      - name: List files
-        run: ls -al
-
       - name: Build
         run: npx nx run-many -t build
+
+      - name: List output files
+        run: ls -al dist

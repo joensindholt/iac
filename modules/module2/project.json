@@ -7,7 +7,7 @@
     "build": {
       "executor": "nx:run-commands",
       "options": {
-        "command": "powershell Copy-Item -Path modules/module2/src -Destination dist/module1"
+        "command": "cp modules/module2/src dist/module1"
       }
     }
   },
