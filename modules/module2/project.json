@@ -7,7 +7,10 @@
     "build": {
       "executor": "nx:run-commands",
       "options": {
-        "command": "cp -r modules/module2/src dist/module1"
+        "commands": [
+          "mkdir -p dist/module2",
+          "cp -r modules/module2/src dist/module2"
+        ]
       }
     }
   },
