@@ -12,6 +12,9 @@ jobs:
 
       - name: List files
         run: ls -al
+
+      - name: Install Nx
+        run: npm install --global nx@latest
         
       - name: Build
         run: npx nx run-many -t build
