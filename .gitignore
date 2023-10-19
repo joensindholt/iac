@@ -36,3 +36,9 @@ terraform.rc
 !.git/hooks/post-checkout
 
 .vscode
+
+# NX
+.nx/installation
+.nx/cache
+.nx/installation
+.nx/cache
