@@ -1,0 +1,15 @@
+{
+  "name": "module2",
+  "$schema": "../../nx/installation/node_modules/nx/schemas/project-schema.jsonnode_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "modules/modules2",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "powershell Copy-Item -Path modules/module2/src -Destination dist/module1"
+      }
+    }
+  },
+  "tags": []
+}
