@@ -11,4 +11,4 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Build
-        run: nx run-many -t build
+        run: npx nx run-many -t build
