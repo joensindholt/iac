@@ -16,6 +16,9 @@ jobs:
 
       - name: Install Nx
         run: ./nx
+
+      - name: Create output directory
+        run: mkdir dist
         
       - name: Build
         run: npx nx affected -t build --parallel=3
