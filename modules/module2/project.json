@@ -1,15 +1,27 @@
 {
   "name": "module2",
   "$schema": "../../nx/installation/node_modules/nx/schemas/project-schema.jsonnode_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "modules/modules2",
+  "root": "{projectRoot}",
+  "sourceRoot": "{projectRoot}/src",
   "projectType": "application",
   "targets": {
     "build": {
       "executor": "nx:run-commands",
       "options": {
         "commands": [
-          "mkdir -p dist/module2",
-          "cp -r modules/module2/src dist/module2"
+          "mkdir -p {workspaceRoot}/dist/module2",
+          "cp -r {projectRoot}/src {workspaceRoot}/dist/module2"
+        ]
+      }
+    },
+    "deploy": {
+      "executor": "nx:run-commands",
+      "options": {
+        "cwd": "{projectRoot}/terraform",
+        "commands": [
+          "terraform init",
+          "terraform workspace select --or-create {args.environment}",
+          "terraform apply -y"
         ]
       }
     }
