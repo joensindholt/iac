@@ -9,7 +9,8 @@
         "commands": [
           "mkdir -p dist/module1",
           "cp -r {projectRoot}/src dist/module1"
-        ]
+        ],
+        "parallel": false
       }
     },
     "deploy": {
