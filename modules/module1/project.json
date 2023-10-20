@@ -17,9 +17,17 @@
       "options": {
         "cwd": "{projectRoot}/terraform",
         "commands": [
-          "terraform init",
-          "terraform workspace select --or-create {args.environment}",
-          "terraform apply -auto-approve"
+          {
+            "command": "terraform init",
+            "forwardAllArgs": false
+          },
+          {
+            "command": "terraform workspace select --or-create {args.environment}"
+          },
+          {
+            "command": "terraform apply -auto-approve",
+            "forwardAllArgs": false
+          }
         ]
       }
     }
