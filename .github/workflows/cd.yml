@@ -24,4 +24,4 @@ jobs:
         run: ./nx
 
       - name: Deploy        
-        run: npx nx affected -t deploy --parallel=0 --environment=${{ inputs.environment }}
+        run: npx nx affected -t deploy --parallel=1 --environment=${{ inputs.environment }}
