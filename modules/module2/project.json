@@ -9,8 +9,8 @@
       "executor": "nx:run-commands",
       "options": {
         "commands": [
-          "mkdir -p {workspaceRoot}/dist/module2",
-          "cp -r {projectRoot}/src {workspaceRoot}/dist/module2"
+          "mkdir -p dist/module2",
+          "cp -r {projectRoot}/src dist/module2"
         ]
       }
     },
