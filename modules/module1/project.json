@@ -28,7 +28,8 @@
             "command": "terraform apply -auto-approve",
             "forwardAllArgs": false
           }
-        ]
+        ],
+        "parallel": false
       }
     }
   },
