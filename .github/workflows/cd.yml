@@ -8,6 +8,13 @@ on:
         description: 'Environment to deploy to'
         type: environment
         required: true
+      project:
+        description: 'Project to deploy - leave empty to deploy all projects'
+        type: choice
+        options: 
+        - module1
+        - module2
+        required: false
 
 jobs:
   deploy:
@@ -23,8 +30,16 @@ jobs:
       - name: Install Nx
         run: ./nx
 
-      - name: Deploy
-        run: npx nx affected -t deploy --parallel=1 --environment=${{ inputs.environment }}
+      - name: Deploy affected projects
+        if: ${{ inputs.project == null }}
+        run: npx nx affected -t deploy --parallel=1 --environment=${{ inputs.environment }} --verbose
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      
+      - name: Deploy project
+        if: ${{ inputs.project != null }}
+        run: npx nx deploy ${{ inputs.project }} --parallel=1 --environment=${{ inputs.environment }} --verbose
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
