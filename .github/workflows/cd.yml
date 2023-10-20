@@ -1,4 +1,4 @@
-run-name: Deploy to ${{ inputs.deploy_target }} by @${{ github.actor }}
+run-name: Deploy to ${{ inputs.environment }} by @${{ github.actor }}
 
 on:
   workflow_dispatch:
@@ -22,5 +22,5 @@ jobs:
       - name: Install Nx
         run: ./nx
 
-      - name: Deploy
-        run: npx nx affected -t deploy --parallel=3 --environment=${{ inputs.environment }}
+      - name: Deploy        
+        run: npx nx affected -t deploy --parallel 1 --environment=${{ inputs.environment }}
