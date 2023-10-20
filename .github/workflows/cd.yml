@@ -1,3 +1,4 @@
+name: CD
 run-name: Deploy to ${{ inputs.environment }} by @${{ github.actor }}
 
 on:
@@ -23,4 +24,4 @@ jobs:
         run: ./nx
 
       - name: Deploy        
-        run: npx nx affected -t deploy --parallel 1 --environment=${{ inputs.environment }}
+        run: npx nx affected -t deploy --parallel=1 --environment=${{ inputs.environment }}
