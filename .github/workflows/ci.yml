@@ -19,6 +19,9 @@ jobs:
       - name: Install Nx
         run: ./nx
 
+      - name: Init
+        run: npx nx affected -t init --parallel=3
+
       - name: Lint
         run: npx nx affected -t lint --parallel=3
 
