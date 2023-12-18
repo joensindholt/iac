@@ -20,7 +20,7 @@ jobs:
           paths: modules/module1/src/resources/resource-a
 
       - name: CI Resource A
-        uses: joensindholt/iac/.github/workflows/ci-resource-a.yaml
+        uses: joensindholt/iac/.github/workflows/ci-resource-a.yml@main
         if: steps.changed-resource-a.outputs.changed == 'true'
 
       - uses: marceloprado/has-changed-path@v1.0.1
