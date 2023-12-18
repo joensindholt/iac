@@ -7,5 +7,11 @@ jobs:
   publish:
     runs-on: ubuntu-latest
     steps:
+      - uses: marceloprado/has-changed-path@v1.0.1
+        id: changed-resource-a
+        with:
+          paths: modules/module1/src/resources/resource-a
+
       - name: Publish
-        run: echo "Publishing Resource A"
+        if: steps.changed-resource-a.outputs.changed == 'true'
+        run: ls -a
