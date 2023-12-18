@@ -21,7 +21,7 @@ jobs:
       
       - name: CI - Resource A
         if: steps.changed-resource-a.outputs.changed == 'true'
-        uses: .github/actions/ci-resource-a
+        uses: ./.github/actions/ci-resource-a
 
 
   # build-resource-b:
