@@ -14,19 +14,37 @@ jobs:
         with:
           fetch-depth: 0
 
-      - uses: nrwl/nx-set-shas@v4
+      - uses: marceloprado/has-changed-path@v1.0.1
+        id: changed-resource-a
+        with:
+          paths: modules\module1\src\resources\resource-a
 
-      - name: Install Nx
-        run: ./nx
+      - name: Publish Module 1 - Resource A
+        if: steps.changed-resource-a.outputs.changed == 'true'
+        run: echo "Publishing Reource A"
 
-      - name: Init
-        run: npx nx affected -t init --parallel=3
+      - uses: marceloprado/has-changed-path@v1.0.1
+        id: changed-resource-b
+        with:
+          paths: modules\module1\src\resources\resource-b
 
-      - name: Lint
-        run: npx nx affected -t lint --parallel=3
+      - name: Publish Module 1 - Resource B
+        if: steps.changed-resource-b.outputs.changed == 'true'
+        run: echo "Publishing Reource B"        
 
-      - name: Build
-        run: npx nx affected -t build --parallel=3
+      # - uses: nrwl/nx-set-shas@v4
 
-      - name: Test
-        run: npx nx affected -t test --parallel=3
+      # - name: Install Nx
+      #   run: ./nx
+
+      # - name: Init
+      #   run: npx nx affected -t init --parallel=3
+
+      # - name: Lint
+      #   run: npx nx affected -t lint --parallel=3
+
+      # - name: Build
+      #   run: npx nx affected -t build --parallel=3
+
+      # - name: Test
+      #   run: npx nx affected -t test --parallel=3
