@@ -17,7 +17,7 @@ jobs:
       - uses: marceloprado/has-changed-path@v1.0.1
         id: changed-resource-a
         with:
-          paths: modules\module1\src\resources\resource-a
+          paths: modules/module1/src/resources/resource-a
 
       - name: Publish Module 1 - Resource A
         if: steps.changed-resource-a.outputs.changed == 'true'
@@ -26,7 +26,7 @@ jobs:
       - uses: marceloprado/has-changed-path@v1.0.1
         id: changed-resource-b
         with:
-          paths: modules\module1\src\resources\resource-b
+          paths: modules/module1/src/resources/resource-b
 
       - name: Publish Module 1 - Resource B
         if: steps.changed-resource-b.outputs.changed == 'true'
