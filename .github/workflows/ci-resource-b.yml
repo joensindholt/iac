@@ -13,10 +13,10 @@ jobs:
           fetch-depth: 2
 
       - uses: marceloprado/has-changed-path@v1.0.1
-        id: changed-resource-a
+        id: changed-resource-b
         with:
-          paths: modules/module1/src/resources/resource-a
+          paths: modules/module1/src/resources/resource-b
 
       - name: Publish
-        if: steps.changed-resource-a.outputs.changed == 'true'
+        if: steps.changed-resource-b.outputs.changed == 'true'
         run: ls -a

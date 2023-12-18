@@ -1,0 +1,8 @@
+name: 'CI - Reource A'
+description: 'CI for resource a'
+
+runs:
+  using: "composite"
+  steps:
+    - run: ls -a
+      shell: bash

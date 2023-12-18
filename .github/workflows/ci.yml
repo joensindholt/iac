@@ -6,28 +6,26 @@ on:
       - main
 
 jobs:
-  checkout:
+  ci:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0
-      
-  build-resource-a:
-    uses: joensindholt/iac/.github/workflows/ci-resource-a.yml@main
-
-  build:
-    runs-on: ubuntu-latest
-    steps:
+          fetch-depth: 2
+    
       - uses: marceloprado/has-changed-path@v1.0.1
-        id: changed-resource-b
+        id: changed-resource-a
         with:
-          paths: modules/module1/src/resources/resource-b
+          paths: modules/module1/src/resources/resource-a
+      
+      - name: CI - Resource A
+        if: steps.changed-resource-a.outputs.changed == 'true'
+        uses: .github\actions\ci-resource-a
 
-      - name: Publish Module 1 - Resource B
-        if: steps.changed-resource-b.outputs.changed == 'true'
-        run: echo "Publishing Reource B"        
+
+  # build-resource-b:
+  #   uses: joensindholt/iac/.github/workflows/ci-resource-b.yml@main     
 
       # - uses: nrwl/nx-set-shas@v4
 
