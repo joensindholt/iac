@@ -1,0 +1,11 @@
+name: CI - Resource A
+
+on:
+  workflow_call:
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Publish
+        run: echo "Publishing Resource A"

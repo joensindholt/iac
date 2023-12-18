@@ -19,9 +19,9 @@ jobs:
         with:
           paths: modules/module1/src/resources/resource-a
 
-      - name: Publish Module 1 - Resource A
+      - name: CI Resource A
+        uses: iac/.github/workflows/ci-resource-a.yaml
         if: steps.changed-resource-a.outputs.changed == 'true'
-        run: echo "Publishing Reource A"
 
       - uses: marceloprado/has-changed-path@v1.0.1
         id: changed-resource-b
